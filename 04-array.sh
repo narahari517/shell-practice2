@@ -2,4 +2,4 @@
 
 Players=("Sachin" "Dravid" "Ganguly")
 
-echo "First player is: $Players[0]
+echo "First player is: $Players[0]"

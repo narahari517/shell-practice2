@@ -40,7 +40,7 @@ root_check
 
 if [ $# -eq 0 ]
 then
-    $usage
+    usage
 fi
 
 for package in $@ #$@ refers to all the arguments passed into

@@ -2,7 +2,7 @@
 
 source_dir=$1
 destination_dir=$2
-days=$(3:-14) #if user doesn't give days, take it as 14
+days=${3:-14} #if user doesn't give days, take it as 14
 timestamp=$(date +%y-%m-%d-%H-%M-%S)
 
 R="\e[31m"
@@ -28,7 +28,7 @@ fi
 
 if [ ! -d $destination_dir ]
 then
-    else -e "$R $destination_dir does not exist, please check $N"
+    echo -e "$R $destination_dir does not exist, please check $N"
 fi
 
 FILES=$(find $source_dir -name "*.log" -mtime +$days)
@@ -49,7 +49,7 @@ then
             echo "Deleting file: $file"
             rm -rf $file
         done <<< $FILES
-        
+
     else
         echo "zipping files failed"
         exit 1

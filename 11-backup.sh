@@ -1,0 +1,62 @@
+#!/bin/bash
+
+source_dir=$1
+destination_dir=$2
+days=$(3:-14) #if user doesn't give days, take it as 14
+timestamp=$(date +%y-%m-%d-%H-%M-%S)
+
+R="\e[31m"
+G="\e[32m"
+Y="\e[33m"
+N="\e[0m"
+
+usage(){
+    echo -e "$R USAGE::$N sh 11-backup.sh <source> <destination> <days(optional)>"
+    exit 1
+}
+
+if [ $# -lt 2 ]
+then
+    usage
+fi
+
+if [ ! -d $source_dir ]
+then
+    echo -e "$R $source_dir does not exist, please check $N"
+    exit 1
+fi
+
+if [ ! -d $destination_dir ]
+then
+    else -e "$R $destination_dir does not exist, please check $N"
+fi
+
+FILES=$(find $source_dir -name "*.log" -mtime +$days)
+
+if [ ! -z $FILES ] #true if there are no files, ! makes the expression false
+then
+    echo "files are found"
+    zip_file="$destination_dir/app-logs-$timestamp.zip"
+    find ${source_dir} -name "*.log" -mtime +$days | zip $zip_file -@
+
+    #check if the zip file is successfully created
+    if [ -f $zip_file ]
+    then
+        echo "zipped the log files successfully older than $days"
+        #remove the files after zipping
+        while IFS= read -r file
+        do
+            echo "Deleting file: $file"
+            rm -rf $file
+        done <<< $FILES
+        
+    else
+        echo "zipping files failed"
+        exit 1
+    fi
+
+else
+    echo "no files older than $days"
+fi
+
+

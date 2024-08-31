@@ -53,6 +53,5 @@ then
         exit 1
     fi
 else
-    echo -e "$R files older than $days days not found $N"
-    exit 1
+    echo -e "No files older than $days days"
 fi

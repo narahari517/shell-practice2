@@ -11,7 +11,7 @@ Y="\e[33m"
 N="\e[0m"
 
 usage(){
-    echo -e "$R USAGE::$N sh 11-backup.sh <source> <destination> <days(optional)>
+    echo -e "$R USAGE::$N sh 11-backup.sh <source> <destination> <days(optional)>"
 }
 
 if [ $# -lt 2 ]

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 source_dir=$1
-desination_dir=$2
+destination_dir=$2
 days=${3:-14} #if not provided by user, take as 14
 timestamp=$(date +%y-%m-%d-%H-%D-%S)
 

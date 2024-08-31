@@ -29,7 +29,7 @@ then
     echo -e "$R $destination_dir does not exist, please check $N"
 fi
 
-FILES=$(find $source_dir -name "*.log" -mtime +$days)
+FILES=$(find ${source_dir} -name "*.log" -mtime +$days)
 
 if [ ! -z $FILES ]
 then

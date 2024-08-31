@@ -34,7 +34,7 @@ FILES=$(find ${source_dir} -name "*.log" -mtime +$days)
 if [ ! -z "$FILES" ]
 then
     echo "files are found"
-    zip_file="$destination_dir-app-logs-$timestamp.zip"
+    zip_file="app-logs-$timestamp.zip"
     find ${source_dir} -name "*.log" -mtime +$days | zip "$zip_file" -@
     
     #check if the files are zipped

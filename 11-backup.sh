@@ -35,12 +35,12 @@ if [ ! -z "$FILES" ]
 then
     echo "files are found"
     zip_file="app-logs-$timestamp.zip"
-    find ${source_dir} -name "*.log" -mtime +$days | zip "$zip_file" -@
+    find ${source_dir} -name "*.log" -mtime +$days | zip $zip_file -@
     
     #check if the files are zipped
     if [ -f $zip_file ]
     then
-        echo "Successfully zipped files older than $days"
+        echo "Successfully zipped files older than $days days"
 
         #remove log files post zip
         while IFS= read -r file
@@ -53,5 +53,5 @@ then
         exit 1
     fi
 else
-    echo "No files older than $days"
+    echo "No files older than $days days"
 fi

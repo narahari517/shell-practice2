@@ -3,7 +3,7 @@
 source_dir=$1
 destination_dir=$2
 days=${3:-14} #if not provided by user, take as 14
-timestamp=$(date +%y-%m-%d-%H-%D-%S)
+timestamp=$(date +%Y-%m-%d-%H-%M-%S)
 
 R="\e[31m"
 G="\e[32m"
@@ -38,7 +38,7 @@ then
     find ${source_dir} -name "*.log" -mtime +$days | zip "$zip_file" -@
     
     #check if the files are zipped
-    if [ -f "$zip_file" ]
+    if [ -f $zip_file ]
     then
         echo "Successfully zipped files older than $days"
 

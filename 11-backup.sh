@@ -53,5 +53,5 @@ then
         exit 1
     fi
 else
-    echo -e "No files older than $days days"
+    echo "No files older than $days"
 fi

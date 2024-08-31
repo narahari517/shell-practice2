@@ -38,7 +38,7 @@ then
     find ${source_dir} -name "*.log" -mtime +$days | zip "$zip_file" -@
     
     #check if the files are zipped
-    if [ -f $zip_file ]
+    if [ -f "$zip_file" ]
     then
         echo -e "$G zipped log files older than $days days successfully $N"
 
@@ -47,7 +47,7 @@ then
         do
             echo "Deleting file: $file"
             rm -rf $file
-        done <<< $FILES
+        done <<< "$FILES"
     else
         echo -e "$R zipping log files failed $N"
         exit 1

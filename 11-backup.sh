@@ -34,20 +34,20 @@ FILES=$(find ${source_dir} -name "*.log" -mtime +$days)
 if [ ! -z "$FILES" ]
 then
     echo "files are found"
-    zip_file="$destination_dir/app-logs-$timestamp.zip"
+    zip_file="$destination_dir-app-logs-$timestamp.zip"
     find ${source_dir} -name "*.log" -mtime +$days | zip "$zip_file" -@
     
     #check if the files are zipped
     if [ -f "$zip_file" ]
     then
-        echo -e "$G zipped log files older than $days days successfully $N"
+        echo "Successfully zipped files older than $days"
 
         #remove log files post zip
         while IFS= read -r file
         do
             echo "Deleting file: $file"
             rm -rf $file
-        done <<< "$FILES"
+        done <<< $FILES
     else
         echo -e "$R zipping log files failed $N"
         exit 1
